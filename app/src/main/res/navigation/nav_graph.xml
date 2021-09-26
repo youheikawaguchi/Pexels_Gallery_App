@@ -9,5 +9,24 @@
         android:id="@+id/galleryFragment"
         android:name="com.android.y_kawaguchi.pexels_gallery_app.view.gallery.GalleryFragment"
         android:label="fragment_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_gallery">
+
+        <action
+            android:id="@+id/action_galleryFragment_to_photoDetailsFragment"
+            app:destination="@id/photoDetailsFragment"
+            app:popUpTo="@id/galleryFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/photoDetailsFragment"
+        android:name="com.android.y_kawaguchi.pexels_gallery_app.view.gallery.details.PhotoDetailsFragment"
+        android:label="PhotoDetailsFragment">
+
+        <argument
+            android:name="data"
+            app:argType="com.android.y_kawaguchi.pexels_gallery_app.repository.model.PexelsPhoto" />
+
+    </fragment>
+
 </navigation>

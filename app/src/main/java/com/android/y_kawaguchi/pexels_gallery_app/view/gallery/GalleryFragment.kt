@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.y_kawaguchi.pexels_gallery_app.R
@@ -22,7 +23,7 @@ interface GalleryNavigation {
 
 class GalleryFragment : Fragment(), GalleryNavigation {
 
-    private val viewModel : GalleryViewModel by viewModel()
+    private val viewModel: GalleryViewModel by viewModel()
     private lateinit var mAdapter: GalleryPhotoListItem
 
     override fun onCreateView(
@@ -62,6 +63,7 @@ class GalleryFragment : Fragment(), GalleryNavigation {
                 viewModel.isApiStatus.value = false
             }
         }
+        viewModel.setNavigation(this)
         return binding.root
     }
 
@@ -92,6 +94,7 @@ class GalleryFragment : Fragment(), GalleryNavigation {
     }
 
     override fun clickItem(data: PexelsPhoto) {
-        TODO("Not yet implemented")
+        val action = GalleryFragmentDirections.actionGalleryFragmentToPhotoDetailsFragment(data)
+        findNavController().navigate(action)
     }
 }
